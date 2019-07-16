@@ -376,6 +376,7 @@ def ppo_pixel(**kwargs):
     config.num_workers = 8
     config.optimizer_fn = lambda params: torch.optim.RMSprop(params, lr=0.00025, alpha=0.99, eps=1e-5)
     config.network_fn = lambda: CategoricalActorCriticNet(config.state_dim, config.action_dim, NatureConvBody())
+    # config.network_fn = lambda: CategoricalActorCriticNet(config.state_dim, config.action_dim, RNNBody())
     config.state_normalizer = ImageNormalizer()
     config.reward_normalizer = SignNormalizer()
     config.discount = 0.99
@@ -478,4 +479,4 @@ if __name__ == '__main__':
     # a2c_pixel(game=game)
     # n_step_dqn_pixel(game=game)
     # option_critic_pixel(game=game)
-    # ppo_pixel(game=game)
+    ppo_pixel(game=game)
